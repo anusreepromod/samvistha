@@ -1,0 +1,224 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+  <h4>Dashboard</h4>
+    <div class="row" style="padding-top: 40px;">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <p class="card-category">Total Categories</p>
+                    <h3 class="card-title">4500
+                    </h3>
+                </div>
+                <div class="item-footer">
+                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <p class="card-category">Total Products</p>
+                    <h3 class="card-title">55000
+                    </h3>
+                </div>
+                <div class="item-footer">
+                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <p class="card-category">Total Orders</p>
+                    <h3 class="card-title">4500
+                    </h3>
+                </div>
+                <div class="item-footer">
+                    <a href="" style="color: black;padding-left: 30px; display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <p class="card-category">Total Customers</p>
+                    <h3 class="card-title">45000
+                    </h3>
+                </div>
+                <div class="item-footer">
+                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:40px;">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card">
+                <h5 class="card-header">Recent Orders</h5>
+                <div class="card-body">
+                  <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" style="width:5%">#</th>
+                    <th scope="col" style="width:10%">Order ID</th>
+                    <th scope="col"style="width:10%" >Order Date</th>
+                    <th scope="col" style="width:10%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>qwertfd</td>
+                    <td>13-08-2021</td>
+                    <td>
+                      <div class="action-list" style="border:1px solid;background-color:rgb(226, 123, 140);border-radius: 15px;"><a href="/adminapp/orderdetails/" style="color: black;display:flex; align-items: center; flex-wrap: wrap;"><i
+                        class="material-icons" style="color: black;">visibility</i> Details</a>
+                       </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>asdfvcd</td>
+                    <td>13-08-2021</td>
+                    <td>
+                      <div class="action-list" style="border: 1px solid;background-color:rgb(226, 123, 140);border-radius: 15px;"><a href="" style="color: black;display:flex; align-items: center; flex-wrap: wrap;"><i
+                        class="material-icons" style="color: black;">visibility</i> Details</a>
+                       </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <h5 class="card-header">Recent Customers</h5>
+                <div class="card-body">
+                  <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" style="width:5%">#</th>
+                    <th scope="col" style="width:10%">Customer Email</th>
+                    <th scope="col" style="width:10%">Mobile</th>
+                    <th scope="col" style="width:10%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in customer %}
+                  <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.email}}</td>
+                    <td>{{i.mobile}}</td>
+                    <td>
+                      <div class="action-list" style="border: 1px solid;background-color:rgb(226, 123, 140);border-radius: 15px;"><a href="/adminapp/customer/" style="color: black;display:flex; align-items: center; flex-wrap: wrap;"><i
+                        class="material-icons" style="color: black;">visibility</i> Details</a>
+                       </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <h5 class="card-header">Popular Products</h5>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col" style="width:5%">#</th>
+                            <th scope="col" style="width:10%">Featured Images</th>
+                            <th scope="col" style="width:10%">Name</th>
+                            <th scope="col" style="width:10%">Category</th>
+                            <th scope="col" style="width:10%">Price</th>
+                            <th scope="col" style="width:10%"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <img src="" alt="">
+                            </td>
+                            <td>Salwar Suit</td>
+                            <td>Indian Wear</td>
+                            <td>Rs 2000</td>
+                            <td>
+                                <div class="action-list" style="border: 1px solid;background-color:rgb(89, 89, 231);border-radius: 15px;"><a href="" style="color: black;display:flex; align-items: center; flex-wrap: wrap;"><i
+                                    class="material-icons" style="color: black;">visibility</i> Details</a>
+                                   </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>
+                              <img src="" alt="">
+                            </td>
+                            <td>Skirt</td>
+                            <td>Western Wear</td>
+                            <td>Rs 1000</td>
+                            <td>
+                              <div class="action-list" style="border: 1px solid;background-color:rgb(89, 89, 231);border-radius: 15px;"><a href="" style="color: black;display:flex; align-items: center; flex-wrap: wrap;"><i
+                                class="material-icons" style="color: black;">visibility</i> Details</a>
+                               </div>
+                            </td>
+                          </tr>        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 50px;">
+        <div class="col-lg-6" >
+            <div class="card" >
+                <h5 class="card-header">Popular Categories</h5>
+                <div class="card-body"  >
+                  <div class="card-responsive" >
+                    <div id="piechart" ></div>
+                </div>
+              </div>
+               </div>
+               <script type="text/javascript">
+                // Load google charts
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                
+                // Draw the chart and set the chart values
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                  ['Categories', 'Total per Category'],
+                  ['Salwar Suits', 8],
+                  ['Kurtis', 2],
+                  ['Skirts', 2],
+                  ['Tops', 2],
+                  ['Dresses', 8]
+                ]);
+                
+                  // Optional; add a title and set the width and height of the chart
+                  var options = { 'width':350, 'height':200};
+                
+                  // Display the chart inside the <div> element with id="piechart"
+                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                  chart.draw(data, options);
+                }
+                </script>
+        </div>
+    </div>
+</div>
+{% endblock %}

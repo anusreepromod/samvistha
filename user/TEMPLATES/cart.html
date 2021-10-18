@@ -1,0 +1,66 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+<div style="padding-top: 50px; padding-left: 20px; padding-right: 20px;"> 
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-10">
+                    <h3>Shopping Cart</h3>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Price</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+            <div class="col-lg-3">
+                <img src="{% static 'images/churi.jpg' %}" alt="" style="height:300px;">
+                
+            </div>
+            <div class="col-lg-7">
+                <h5>Citrus Womens Pink Cotton A Line Suit Set</h5>
+                <h6>Size: S</h6>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Quantity
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                       
+                        <a class="dropdown-item" href="#">i</a>
+                       
+                      
+                    </div>
+                  </div>
+            </div>
+            <div class="col-lg-2">
+                <h6>&#8377; 2000</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+        <div class="col-lg-10">
+            <h5>Total Price</h5>
+        </div>
+       <div class="col-lg-2">
+        <h6>&#8377; 2000</h6>
+       </div>
+    </div>
+</div>
+<div class="card-footer">
+    <div class="row">
+        <div class="col-lg-12">
+            <center>
+                <button type="submit" class="btn btn-primary">Proceed to Buy</button> 
+            </center>
+            
+        </div>
+    </div>
+
+</div>
+    </div>
+</div>
+
+{% endblock %}

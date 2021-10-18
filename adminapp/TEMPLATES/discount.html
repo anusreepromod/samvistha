@@ -1,0 +1,158 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Discounts
+                  </h5>
+                </div>
+            </div> 
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>  
+        </div> 
+            </div>
+        </div>
+    </div>
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                       Discount Form
+                        </div>
+                        <div class="card-body">
+                          <form action="">
+                           <div class="form-group">
+                              <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="name">Type</label>
+                                        <select class=""  style="width: 100%;height: 50%;" required>
+                                        <option value="">Discount on Purchase</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="name">Title</label>
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
+                                    </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="name">Discount Code</label>
+                                        <input type="text"  class="form-control"  placeholder="" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <label for="name">Start Date</label>
+                                        <input type="date"  class="form-control" placeholder="start date" required>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                <div class="col-md-6">
+                                <label for="name">Expire date</label>
+                                <input type="date"  class="form-control"  placeholder="expire date" required>
+                                </div>
+                                <div class="col-md-6">
+                                <label for="name">Minimum Purchase</label>
+                                <input type="number" class="form-control"  placeholder="minimum purchase" required>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                    <label for="name">Discount</label>
+                                    <input type="number" class="form-control"  placeholder="discount" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <label for="name">Discount Type</label>
+                                    <select class=""  style="width: 100%;height: 50%;">
+                                    <option value="amount">Amount</option>
+                                    <option value="percentage">Percentage ( % )</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                        <label for="name">Maximum Discount</label>
+                                        <input type="number" class="form-control"  placeholder="maximum discount" required>
+                                        </div>
+                                        </div>
+                                    </div>  
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                     </div>
+                          </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Products Ordered</h4>
+                    </div>
+                    
+                    <div class="table-responsive">
+                      <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
+                         <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="10%">Type</th>
+                                <th width="10%">Title</th>
+                                <th width="10%">Discount</th>
+                                <th width="10%">Min. Purchase</th>
+                                <th width="10%">Max Purchase</th>
+                                <th width="10%">Discount</th>
+                                <th width="10%">Discount Type</th>
+                                <th width="10%">Start Date</th>
+                                <th width="10%">Expiry Date </th>
+                                <th width="30%">Status</th>
+                                <th width="10%">Action</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td style="text-transform: capitalize">discount on purchase</td>
+                                <td >Test</td>
+                                <td>1234</td>
+                                <td>10.00</td>
+                                <td>10.00</td>
+                                <td>10.00</td>
+                                <td>amount</td>
+                                <td>05-Jun-2022</td>
+                                <td>07-Jun-2022</td>
+                                <td><label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                  </label>
+                                </td>
+                                <td>
+                                <a href="" class="btn btn-primary btn-sm">
+                                Update
+                                </a>
+                                </td>
+                                </tr>
+                         </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

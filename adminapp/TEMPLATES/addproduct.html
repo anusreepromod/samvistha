@@ -1,0 +1,238 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="row">
+        <div class="col-md-12">
+               <div class="card">
+                <div class="card-header">
+                  <h5>Product Form</h5>
+                </div>
+                <div class="card-body">
+                   <form action="" method="POST" >
+                   <div class="row">
+                       <div class="col-12">
+                           <div class="form-group" >
+                           <label class="input-label" for="">Name
+                            <span class="required-field">
+                           </label>
+                           <input type="text"  class="form-control" placeholder="New Product Name" required>
+                           </div>
+                           </div>
+                       <div class="col-12">
+                           <div class="form-group">
+                           <label for="">Description</label>
+                           <span class="required-field">
+                           <br>
+                           <textarea name="" class= "editor" id="" cols="100" rows="10"></textarea>
+                           </div>
+                           </div>
+                   </div>
+                </form>
+                   </div>
+               </div>    
+        </div>
+    </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-md-12">
+               <div class="card">
+                <div class="card-header">
+                  <h5>General Info</h5>
+                </div>
+                <div class="card-body">
+                   <form action="" method="POST" >
+                   <div class="row">
+                       <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="input-label" for="">Category
+                            <span class="required-field"></label>
+                            <select id="" name="" class="form-control" required>
+                            <option value="">--select--</option>
+                            <option value="">Women's Fashion</option>
+                            </select>
+                            </div>
+                           </div>
+                       <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="input-label" for="">Sub Category
+                            <span class="required-field"></label>
+                            <select id="" name="" class="form-control" required>
+                            <option value="">--select--</option>
+                            <option value="">Indian Wear</option>
+                            </select>
+                            </div>
+                           </div>
+                           <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="input-label" for="">Sub Sub Category
+                                <span class="required-field"></label>
+                                <select id="" name="" class="form-control" required>
+                                <option value="">--select--</option>
+                                <option value="">Kurta</option>
+                                </select>
+                                </div>
+                               </div>
+                               <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="input-label" for="">Brand
+                                    <span class="required-field"></label>
+                                    <select id="" name="" class="form-control" required>
+                                    <option value="">--select--</option>
+                                    <option value="">Sams</option>
+                                    </select>
+                                    </div>
+                                   </div>
+                                   <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="input-label" for="">Units
+                                        <span class="required-field"></label>
+                                        <select id="" name="" class="form-control" required>
+                                        <option value="">--select--</option>
+                                        <option value="">Pcs</option>
+                                        </select>
+                                        </div>
+                                       </div>
+                   </div>
+                </form>
+                   </div>
+               </div>
+          
+        </div>
+    </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-md-12">
+               <div class="card">
+                <div class="card-header">
+                  <h5>Variations</h5>
+                </div>
+                <div class="card-body">
+                   <div class="form-group">
+                   <div class="row">
+                       <div class="col-md-6">
+                        <label for="colors">
+                            Colors :
+                            </label> 
+                            <label class="switch">
+                            <input type="checkbox" class="status" value="" id="check1"  onchange="change()">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="required-field">
+                        <br>
+                            <select class="form-control" id="select1" disabled>
+                                <option value="#FF0000">
+                                Red
+                                </option> 
+                                 <option value="#4169E1">
+                                RoyalBlue
+                                </option>
+                                <option value="#C0C0C0">
+                                Silver
+                                </option>
+                                <option value="#87CEEB">
+                                SkyBlue
+                                </option>    
+                                <option value="#EE82EE">
+                                Violet
+                                </option>
+                                <option value="#F5DEB3">
+                                Wheat
+                                </option>
+                                <option value="#FFFFFF">
+                                White
+                                </option>
+                                <option value="#FFFF00">
+                                Yellow
+                                </option>
+                                </select>
+                           
+                           </div>
+                           <script>
+                               function change(){
+                                if(document.getElementById('check1').checked==true){
+                                   document.getElementById('select1').disabled=false;
+                               }
+                               if (document.getElementById('check1').checked==false){
+                                   document.getElementById('select1').disabled=true;
+                               }
+                               }
+                               
+                           </script>
+                       <div class="col-md-6">
+                           <div class="form-group">
+                            <label for="" >
+                                Attributes :
+                                </label>
+                                <span class="required-field">
+                                <select class=" form-control">
+                                <option value=" ">--Select--</option>
+                                <option value=" ">size</option>
+                                
+                                </select>
+                           </div>
+                           </div>
+                   </div>
+                </div>
+                   </div>
+               </div>    
+        </div>
+    </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-md-12">
+               <div class="card">
+                <div class="card-header">
+                  <h5>Product Price & Stock</h5>
+                </div>
+                <div class="card-body">
+                   <form action="" method="POST" >
+                   <div class="row">
+                       <div class="col-6">
+                           <div class="form-group" >
+                           <label class="input-label" for="">Unit Price
+                           </label>
+                           <span class="required-field">
+                           <input type="text"  class="form-control" placeholder="Unit Price" required>
+                           </div>
+                           </div>
+                           <div class="col-6">
+                            <div class="form-group" >
+                            <label class="input-label" for="">Purchase Price
+                            </label>
+                            <span class="required-field">
+                            <input type="text"  class="form-control" placeholder="Purchase Price" required>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Tax</label>
+                                <label class="badge badge-info">Percent ( % )</label>
+                                <span class="required-field">
+                                <input type="number" min="0" value="0" step="1.00" placeholder="Tax}" name="tax" value="" class="form-control">
+                                <input name="tax_type" value="percent" style="display: none">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label">Discount</label>
+                                    <span class="required-field">
+                                    <input type="number" placeholder="Discount"  class="form-control">
+                                    </div>
+                                    <div class="col-md-2" style="padding-top: 30px;">
+                                    <select class="form-control" >
+                                    <option value="flat">Flat</option>
+                                    <option value="percent">Percent</option>
+                                    </select>
+                                    </div>
+                   </div>
+                   </div>
+               </div>
+           </form>
+        </div>
+    </div><br>
+    <div class="card card-footer">
+        <div class="row">
+        <div class="col-md-12" style="padding-top: 10px">
+        <button type="button"  class="btn" style="background-color: rgb(226, 123, 140);">Submit</button>
+        <button type="button"  class="btn btn-danger">Cancel</button>
+        </div>
+        </div>
+        </div>
+</div>
+
+{% endblock %}

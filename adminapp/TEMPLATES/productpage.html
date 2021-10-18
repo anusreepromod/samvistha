@@ -1,0 +1,85 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0"> 
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Product Page
+                    </h5>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>  
+            </div> 
+            </div>
+        </div>
+    </div>
+  <div class="row" style="padding-top: 30px;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Product List
+                </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Sub Category</th>
+                            <th scope="col">Product price</th>
+                            <th scope="col">action</th> 
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Churidhar</td>
+                            <td>Sams</td>
+                            <td>Indian wear</td>
+                            <td>&#x20B9;2400</td>
+                            <td>
+                              <a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;" href="#editcategory">
+                                <i class="material-icons">edit</i>Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                    <i class="material-icons">delete</i>Delete
+                                    </a> 
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Skirt</td>
+                            <td>Citrus</td>
+                            <td>Western Wear</td>
+                            <td>&#x20B9;899</td>
+                            <td>
+                              <a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;" href="#editcategory">
+                                <i class="material-icons">edit</i>Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                    <i class="material-icons">delete</i>Delete
+                                    </a> 
+                            </td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

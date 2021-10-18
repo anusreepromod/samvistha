@@ -1,0 +1,1 @@
+web gunicorn samvistha.wsgi --log-file -

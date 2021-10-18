@@ -1,0 +1,183 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Brand
+</h5>
+                </div>
+            </div>
+            
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>  
+        </div> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" style="padding-top: 40px;">
+      <div class="col-md-12">
+      <div class="card">
+      <div class="card-header">
+      Brand Form
+      </div>
+      <div class="card-body">
+      <form action="" method="POST" >
+      <div class="row">
+      <div class="col-6">
+      <div class="form-group" >
+      <label class="input-label" for=""> Brand Name
+      </label>
+      <input type="text" name="brandname" class="form-control" placeholder="New Brand" required>
+      </div>
+      </div>
+      <!-- <div class="col-6">
+      <label>Image</label><small style="color: red">*
+      </small>
+      <div class="custom-file">
+      <input type="file" name="image" id="" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
+      <label class="custom-file-label" for="">Choose File</label>
+      </div>
+      </div> -->
+      <div class="form-group col-6" style="padding-top: 25px;">
+        <div class="float-left col-4">
+            <label for="document" class="float-left pt-1 form-control-label">Banner Image<span class="text-danger">*</span> </label>
+        </div>
+        <div class="float-right col-8">
+            <!-- <input type="hidden" name="certificate" id="" value="" > -->
+            <div class="choose-file form-group">
+                <label for="">
+                    <!-- <div>Choose File</div> -->
+                    <input class="form-control border-0" name="brandimage" type="file" >
+                </label>     
+            </div>
+        </div>
+    </div>
+      <div class="col-12 ">
+      <div class="form-group">
+      <hr>
+      <!-- <center>
+      <img style="width: 30%;border: 1px solid; border-radius: 10px;" id="viewer" src="" alt="image" />
+      </center> -->
+      </div>
+      </div>
+      </div>
+      <hr>
+      <div class="container">
+      <button type="submit" class="btn" style="background-color: rgb(226, 123, 140);">submit</button>
+      <button type="cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+      </form>
+      </div>
+      </div>
+      </div>
+      
+  </div>
+
+<div class="row" style="padding-top: 50px;">
+    <div class="col-lg-12">
+     <div class="card">
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        
+                        <th scope="col" style="width: 15%;">Brand ID</th>
+                        <th scope="col" style="width: 15%;">Name</th>
+                        <th scope="col" style="width: 15%;">Image</th>
+                        <th scope="col" style="width: 15%;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>1</td>
+                        <td>Sam</td>
+                        <td><img src="" alt="image to be uploaded"></td>
+                        <td>
+                          <a class="btn  btn-sm edit"data-toggle="modal" 
+                          data-target="#editbrand" style="cursor: pointer;background-color: rgb(226, 123, 140);" href="#editbrand">
+                            <i class="material-icons">edit</i>Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                <i class="material-icons">delete</i>Delete
+                                </a> 
+                        </td>
+                      </tr>
+                      <tr>
+                        
+                        <td>2</td>
+                        <td>Citrus</td>
+                        <td><img src="" alt="image to be uploaded"></td>
+                        <td>
+                          <a class="btn btn-primary btn-sm edit"data-toggle="modal" 
+                          data-target="#editbrand" style="cursor: pointer;" href="#editbrand">
+                            <i class="material-icons">edit</i>Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                <i class="material-icons">delete</i>Delete
+                                </a> 
+                        </td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+            </div>
+            </div>
+     </div>
+    </div>
+</div>
+
+<!-- edit modal -->
+<div class="modal fade" id="editbrand" tabindex="-1" aria-labelledby="editbrandLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editbrandLabel">Edit Brand</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+
+            <div class="form-group col-lg-12">
+              <label for="" class="form-control-label">Brand Name</label>
+              <input class="form-control" required="required" name="" type="text" placeholder="Sam">
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="" class="form-control-label">Brand Logo</label>
+            <input type="file" id="myFile" name="filename">
+        </div>
+        <div class="form-group col-lg-6">
+          
+          <img src="" alt="Brand logo uploaded">
+        </div> 
+      </div>
+          </div>
+        </div>
+      </div>
+      <div class="container" style="padding-bottom: 10px;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

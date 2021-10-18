@@ -1,0 +1,84 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Orders
+</h5>
+                </div>
+            </div>
+            
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                
+        </div>  
+                <div class="btn-group">
+        <span class="btn addButtons">
+            <a class="btn btn-primary" href="" role="button"> <i class="fa fa-plus">Add</i></a>
+        </span> 
+    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 40px;">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer name</th>
+                            <th scope="col">Product name</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Order no</th>
+                            <th scope="col">Order date</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                            
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td></td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a class="btn btn-sm edit"data-toggle="modal" data-target="" style="cursor: pointer;background-color: rgb(226, 123, 140);" href="">
+                                    <i class="material-icons">edit</i>Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                        <i class="material-icons">delete</i>Delete
+                                        </a> 
+                            </td>
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
