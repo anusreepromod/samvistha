@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 <div class="content" style="padding-top:40px; padding-left:30px;padding-right: 30px;">
-<div class="row">
+  
+  <div class="row">
     <div class="col-lg-4">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -12,13 +13,13 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{% static 'images/churi.jpg' %}" class="d-block w-100" alt="...">
+                <img src="/adminapp/media/{{product.pimage1}}" class="d-block w-100" alt="..." id="image">
               </div>
               <div class="carousel-item">
-            <img src="{% static 'images/churi2.jpg' %}" class="d-block w-100" alt="...">
+            <img src="/adminapp/media/{{product.pimage2}}" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="{% static 'images/churi3.jpg' %}" class="d-block w-100" alt="...">
+                <img src="/adminapp/media/{{product.pimage3}}" class="d-block w-100" alt="...">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -32,63 +33,57 @@
           </div>
     </div>
     <div class="col-lg-8" style="padding-left: 150px;padding-top: 60px;">
-        <h4>Citrus</h4>
-        <h5 style="padding-top: 20px;font-weight: lighter;">Womens Pink Cotton A Line Suit Set</h5>
-        <h6 style="padding-top: 20px;">&#8377; 2000</h6>
-        <!-- <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Select Size
-            </a>
-          
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">S</a>
-              <a class="dropdown-item" href="#">M</a>
-              <a class="dropdown-item" href="#">L</a>
-              <a class="dropdown-item" href="#">XL</a>
+      <div class="row">
+        <div class="col-lg-8">
+          <h4 id="id" hidden>{{product.id}}</h4 >
+          <h4 id="brand">{{product.brand_id.brandname}}</h4>
+          <h5 style="padding-top: 20px;font-weight:bold;" id="name">{{product.name }}</h5>
+          <div class="row">
+            <div class="col-md-1">
+              <h6 style="padding-top: 20px;">&#8377</h6>
+              
             </div>
-          </div> -->
+            <div class="col-md-0">
+              <h6 style="padding-top: 20px;" id="price"> {{ product.purchaseprice }}</h6>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+        
+        
           <h6 style="padding-top: 20px;">Select Size</h6>
           <div class="row" style="padding-top: 10px;">
               <div class="col-lg-1">
-                  <a href="" style="text-decoration: none;"> 
+                  <!-- <a href="" style="text-decoration: none;"> 
                   <div class="card">
                       <div class="Card-header"> 
                          <h6 style="text-align: center;color: black;">S</h6>
                         </div>
                   </div>
-                </a>
+                </a> -->
+                <input type="checkbox" id="small" name="small" value="Small" >
+                                    <label for="s" > S</label >
               </div>
               <div class="col-lg-1">
-                <a href="" style="text-decoration: none;"> 
-                <div class="card">
-                    <div class="Card-header"> 
-                       <h6 style="text-align: center;color: black;">M</h6>
-                      </div>
-                </div>
-              </a>
+              
+              <input type="checkbox" id="medium" name="medium" value="Medium">
+              <label for="m" > M</label>
             </div>
             <div class="col-lg-1">
-                <a href="" style="text-decoration: none;"> 
-                <div class="card">
-                    <div class="Card-header"> 
-                       <h6 style="text-align: center;color: black;">L</h6>
-                      </div>
-                </div>
-              </a>
+               
+              <input type="checkbox" id="large" name="large" value="Large">
+                                    <label for="l" > L</label>
             </div>
             <div class="col-lg-1">
-                <a href="" style="text-decoration: none;"> 
-                <div class="card">
-                    <div class="Card-header"> 
-                       <h6 style="text-align: center;color: black;">XL</h6>
-                      </div>
-                </div>
-              </a>
+               
+              <input type="checkbox" id="xlarge" name="xlarge" value="Xlarge">
+                                    <label for="xl" > XL</label>
             </div>
           </div>
           <div class="row" style="padding-top: 30px;padding-bottom: 60px;">
               <div class="col-12" style="padding-left: 60px;">
-                  <button type="submit" class="mybutton" style="width:50%;height:40px;background-color: pink;">Add to Bag</button>
+                  <button type="submit" class="mybutton" style="width:50%;height:40px;background-color: pink;" onclick="addtobag()">Add to Bag</button>
               </div>
           </div>
           <hr >
@@ -96,9 +91,7 @@
               <div class="col-lg-12" style="padding-top: 10px;">
                   <h4 style="padding-top: 10px;">Product Information</h4>
                   <h5 style="padding-top: 10px;">Description</h5>
-                  <h6 style="padding-top: 10px;font-weight: lighter;font-size:16px;">A double layered suit set from your festive collection. The set combines pink printed kurta, contrast tiered inner, cotton churidar and dupatta. The color combination and detailing of this set are festive perfect. This set comes with a Mask
-
-                    Machine Wash In Cold Water,Light Tumble Dry, Use Mild Detergent, Do Not Bleach, Cold Iron.</h6>  
+                  <h6 style="padding-top: 10px;font-weight: lighter;font-size:16px;">{{ i.desc }}</h6>  
               </div>
           </div>
           <div class="row" style="padding-top: 40px;">
@@ -113,23 +106,23 @@
                                 <table class="table  mb-0 dataTable no-footer">
                                     <tr role="row">
                                         <th>Category</th>
-                                        <td>Churidhar</td>
+                                        <td>{{product.category_id.category_name }}</td>
                                     </tr>
                                     <tr>
                                         <th>Fit</th>
-                                        <td>A line</td>
+                                        <td>{{ product.fit }}</td>
                                     </tr>
                                     <tr>
                                         <th>Color</th>
-                                        <td>Pink</td>
+                                        <td>{{product.color }}</td>
                                     </tr>
                                     <tr>
                                         <th>Fabric</th>
-                                        <td>Cotton</td>
+                                        <td>{{product.fabric }}</td>
                                     </tr>
                                     <tr>
                                         <th>Sleeve Length</th>
-                                        <td>3/4 sleeve</td>
+                                        <td>{{product.sleeve }}</td>
                                     </tr>
                                 </table>
                             <!-- </div>
@@ -143,4 +136,43 @@
 </div>
 </div>
 
+</div>
+<script>
+  function addtobag(){
+    
+    if ($('#small').is(':checked')){
+      size='S' 
+    }
+     else if($('#medium').is(':checked')){
+       size='M'
+     }
+    else if($('#large').is(':checked')){
+       size='L'
+     }
+    else if($('#xlarge').is(':checked')){
+       size='XL'
+     }
+     $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/user/addbag/',
+    type:'POST',
+    
+    data:{
+      id:$('#id').text(),
+       brand:$('#brand').text(),
+       name:$('#name').text(),
+       price:$('#price').text(),
+       size:size,
+       image:$('#image').attr('src')
+    },
+    
+    success: function(response){
+        alert(response.msg)
+        location.href = "/user/cart/"
+    }
+})  
+  }
+</script>
 {% endblock %}

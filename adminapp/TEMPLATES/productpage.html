@@ -1,6 +1,13 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="content" style="padding-top:40px; padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -31,7 +38,7 @@
                 </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="table">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">#</th>
@@ -44,35 +51,9 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Churidhar</td>
-                            <td>Sams</td>
-                            <td>Indian wear</td>
-                            <td>&#x20B9;2400</td>
-                            <td>
-                              <a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;" href="#editcategory">
-                                <i class="material-icons">edit</i>Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
-                                    <i class="material-icons">delete</i>Delete
-                                    </a> 
-                            </td>
+                            
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Skirt</td>
-                            <td>Citrus</td>
-                            <td>Western Wear</td>
-                            <td>&#x20B9;899</td>
-                            <td>
-                              <a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;" href="#editcategory">
-                                <i class="material-icons">edit</i>Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
-                                    <i class="material-icons">delete</i>Delete
-                                    </a> 
-                            </td>
-                          </tr>
+                         
                           
                         </tbody>
                       </table>
@@ -81,5 +62,102 @@
         </div>
     </div>
   </div>
+  <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 ">
+                                
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                      <input type="text" id='id' hidden>
+                                      <label for="">Price</label>
+                                        <input class="form-control"  name="" type="text" id="price" >
+                                    </div>
+                                    
+                                        
+                                </div>
+                            
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateprice()">Edit</button>
+          
+        </div>
+      </div>
+    </div>
 </div>
+<script>
+  function loaddata(){
+           $.ajax({
+               url:'/adminapp/fnproductpage/',
+               type:'GET',
+               success: function(response){
+                   $('.tr').remove()
+                  for(i=0;i<response.product.length;i++){
+                      $('#table').append("<tr class='tr'><td>"+response.product[i].id+"</td><td>"+response.product[i].name+"</td><td>"+response.product[i].brand+"</td><td>"+response.product[i].subcat+"</td><td>"+response.product[i].price+"</td><td><button data-toggle='modal' data-target='#viewModal' onclick='getprice("+response.product[i].id+")'>Edit</button></td><td><button onclick='deldata("+response.product[i].id+")'>Delete</button></td></tr>")
+                  }
+               }
+           })
+       }
+       function getprice(uid){
+        $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+           });
+           $.ajax({
+               url:'/adminapp/getprice/',
+               type:'POST',
+               data:{
+                   uid:uid
+               },
+               success: function(response){
+                 $('#id').val(response.price[0].id)
+                 $('#price').val(response.price[0].price)
+                
+               }
+           })
+       }
+       function updateprice(){
+        $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+           });
+           $.ajax({
+               url:'/adminapp/updateprice/',
+               type:'POST',
+               data:{
+                   id:$('#id').val(),
+                   price:$('#price').val(),
+                   
+
+               },
+               success: function(response){
+                    loaddata()
+               }
+           })
+       }
+       function deldata(id){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/adminapp/delproduct/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    loaddata()
+                }
+            })
+        }
+</script>
 {% endblock %}

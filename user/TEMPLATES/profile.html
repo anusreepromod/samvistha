@@ -1,0 +1,91 @@
+{% extends "masters.html" %}
+{% load static %}
+{% block content %}
+
+<div class="page-content" style="padding-top:40px;padding-right:10px;padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 "> Add Address
+                        
+                        {{ msg }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+<form action="/user/profile/" method="POST" >
+    {% csrf_token %}
+    <div class="row" style="padding-top: 20px;padding-left: 20px;">  
+        <div class="col-md-6 ">
+            <div class="card">
+                <div class="card-header"><h6 class="mb-0">Contact Details</h6></div>
+                <div class="card-body ">
+                    <div class="row">
+                        
+                        <div class="form-group col-md-12">
+                            <label for="address" class="form-control-label">Address</label><span class="text-danger pl-1">*</span>
+                            <textarea class="form-control" rows="2"  name="address" cols="50" id="address"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">city</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="city" type="text" id="">
+        
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">State</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="state" type="text" id="">
+        
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Country</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="country" type="text" id="">
+        
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Pin code</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="pincode" type="text" id="pincode">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Mobile Number</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="mobile" type="text" id="mobile">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" class="form-control-label">Address Type</label><span class="text-danger pl-1">*</span>
+                            <input class="form-control"  name="atype" type="text" id="atype">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" >Create</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            
+            <div class="card">
+                <div class="card-header"><h6 class="mb-0">{{address.addresstype }}</h6></div>
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <textarea name="" id="" cols="40" rows="5">
+                    {{address.address}},
+                    {{address.city}},{{address.state}},
+                    {{address.country}},{{address.pincode}},
+                    Phone:{{address.mobile}}
+                        </textarea>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</form>
+</div>
+
+
+{% endblock %}

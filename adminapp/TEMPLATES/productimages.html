@@ -1,0 +1,152 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0"> 
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Manage Product Image
+                     </h5>
+                </div>
+            </div>
+            
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>           
+        </div> 
+            </div>
+        </div>
+    </div>
+      <div class="row" style="padding-top: 40px;">
+        <div class="col-md-12">
+        <div class="card">
+        <div class="card-header">
+        Add Product Images
+        </div>
+        <div class="card-body">
+        <form action="/adminapp/productimage/" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+        <div class="col-6">
+        <div class="form-group" >
+        <label class="input-label" for=""> Product Id
+        </label>
+        <input type="text" name="pid" id='pid' class="form-control" placeholder="Product Id" required>
+        </div>
+        </div>
+        <!-- <div class="col-6">
+        <label>Image</label><small style="color: red">*
+        </small>
+        <div class="custom-file">
+          <input type="file" name="bimage" id="" class="custom-file-input" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
+          <label class="custom-file-label" for="">Choose File</label>
+          </div>
+        </div> -->
+        <div class="form-group col-6" style="padding-top: 25px;">
+          <div class="float-left col-4">
+              <label for="document" class="float-left pt-1 form-control-label">Product Image 1<span class="text-danger">*</span> </label>
+          </div>
+          <div class="float-right col-8">
+              <!-- <input type="hidden" name="certificate" id="" value="" > -->
+              <div class="choose-file form-group">
+                  <label for="">
+                      <!-- <div>Choose File</div> -->
+                      <input class="form-control border-0" name="pimage1" id="pimage1" type="file" >
+                  </label>     
+              </div>
+          </div>
+      </div>
+      <div class="form-group col-6" style="padding-top: 25px;">
+        <div class="float-left col-4">
+            <label for="document" class="float-left pt-1 form-control-label">Product Image 2<span class="text-danger">*</span> </label>
+        </div>
+        <div class="float-right col-8">
+            <!-- <input type="hidden" name="certificate" id="" value="" > -->
+            <div class="choose-file form-group">
+                <label for="">
+                    <!-- <div>Choose File</div> -->
+                    <input class="form-control border-0" name="pimage2" id="pimage2" type="file" >
+                </label>     
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-6" style="padding-top: 25px;">
+        <div class="float-left col-4">
+            <label for="document" class="float-left pt-1 form-control-label">Product Image 3<span class="text-danger">*</span> </label>
+        </div>
+        <div class="float-right col-8">
+            <!-- <input type="hidden" name="certificate" id="" value="" > -->
+            <div class="choose-file form-group">
+                <label for="">
+                    <!-- <div>Choose File</div> -->
+                    <input class="form-control border-0" name="pimage3" id="pimage3" type="file" >
+                </label>     
+            </div>
+        </div>
+    </div>
+        </div>
+        <hr>
+        <div class="container">
+        <button type="submit" class="btn" style="background-color: rgb(226, 123, 140);">submit</button>
+        <button type="cancel" class="btn btn-secondary">Cancel</button>
+        </div>
+        </form>
+        {{msg}}
+        </div>
+        </div>
+        </div>
+        
+    </div>
+
+  <div class="row" style="padding-top:40px; padding-left: 10px;">
+      <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Product Image List
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col" style="width: 5%;">#</th>
+                                <th scope="col" style="width: 10%;">Product Id</th>
+                                <th scope="col" style="width: 15%;">Image 1</th>
+                                <th scope="col" style="width: 15%;">Image 2</th>
+                                <th scope="col" style="width: 15%;">Image 3</th>
+                                <th scope="col" style="width: 25%;">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1</td>
+                                <td><img src="" alt="Image1"></td>
+                                <td><img src="" alt="Image2"></td>
+                                <td><img src="" alt="Image3"></td>
+                                
+                                <td><a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;" href="#editcategory">
+                                    <i class="material-icons">edit</i>Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
+                                        <i class="material-icons">delete</i>Delete
+                                        </a> </td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+
+        </div>
+      </div>
+  </div>
+  {{msg}}
+</div>
+{% endblock %}

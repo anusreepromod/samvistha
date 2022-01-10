@@ -31,26 +31,43 @@
         Sub Category Form
         </div>
         <div class="card-body">
-        <form action="" method="POST" >
+        <form action="/adminapp/subcategory/" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
         <div class="row">
         <div class="col-6">
         <div class="form-group" >
         <label class="input-label" for="">Sub Category Name
         </label>
-        <input type="text"  class="form-control" placeholder="New Sub Category" required>
+        <input type="text"  class="form-control" name= "subcategory" placeholder="New Sub Category" required>
         </div>
         </div>
         <div class="col-6">
             <div class="form-group">
             <label class="input-label" for="FormControlSelect1">Category
             <span class="input-label-secondary">*</span></label>
-            <select id="FormControlSelect1" name="parent_id" class="form-control" required>
-            <option value="37">Women's Fashion</option>
-            
+            <select id="FormControlSelect1" name="category" class="form-control" required>
+            <option value="">Select</option>
+            {% for i in category %}
+                <option value="{{ i.id }}">{{ i.category_name }}</option>
+                 
+                {% endfor %}
             </select>
             </div>
             </div>
-        
+            <div class="form-group col-6" style="padding-top: 25px;">
+              <div class="float-left col-md-6">
+                  <label for="document" class="float-left pt-1 form-control-label">Sub Category Image<span class="text-danger">*</span> </label>
+              </div>
+              <div class="float-right col-6">
+                  <!-- <input type="hidden" name="certificate" id="" value="" > -->
+                  <div class="choose-file form-group">
+                      <label for="">
+                          <!-- <div>Choose File</div> -->
+                          <input class="form-control border-0" id="subcategoryimage" name="subcategoryimage" type="file" >
+                      </label>     
+                  </div>
+              </div>
+          </div>
         </div>
         <hr>
         <div class="container"></div>
@@ -72,16 +89,15 @@
                             
                             <th scope="col" style="width: 15%;">Sub Category ID</th>
                             <th scope="col" style="width: 15%;">Sub CategoryName</th>
-                            <th scope="col" style="width: 15%;">Category</th>
                             <th scope="col" style="width: 15%;">Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          {% for i in subcategory %}
                           <tr>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.subcategory_name }}</td>
                             
-                            <td>1</td>
-                            <td>Indian Wear</td>
-                            <td>Women's Fashion</td>
                             <td>
                                 <a class="btn  btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;background-color: rgb(226, 123, 140);" href="#editcategory">
                                     <i class="material-icons">edit</i>Edit
@@ -91,7 +107,7 @@
                                         </a> 
                             </td>
                           </tr>
-                         
+                         {% endfor %}
                         </tbody>
                       </table>
                 </div>

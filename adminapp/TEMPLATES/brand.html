@@ -1,6 +1,13 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }
+    
+</script>
 <div class="content" style="padding-top:40px; padding-left: 10px;">
     <div class="page-title">
         <div class="row justify-content-between align-items-center">
@@ -33,7 +40,8 @@
       Brand Form
       </div>
       <div class="card-body">
-      <form action="" method="POST" >
+      <form action="/adminapp/brand/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
       <div class="row">
       <div class="col-6">
       <div class="form-group" >
@@ -52,7 +60,7 @@
       </div> -->
       <div class="form-group col-6" style="padding-top: 25px;">
         <div class="float-left col-4">
-            <label for="document" class="float-left pt-1 form-control-label">Banner Image<span class="text-danger">*</span> </label>
+            <label for="document" class="float-left pt-1 form-control-label">Brand Image<span class="text-danger">*</span> </label>
         </div>
         <div class="float-right col-8">
             <!-- <input type="hidden" name="certificate" id="" value="" > -->
@@ -90,7 +98,7 @@
      <div class="card">
         <div class="card-body py-0">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="table">
                     <thead class="thead-light">
                       <tr>
                         
@@ -101,11 +109,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      
+                      <!-- <tr>
                         
-                        <td>1</td>
-                        <td>Sam</td>
-                        <td><img src="" alt="image to be uploaded"></td>
+                        <td>{{i.id}}</td>
+                        <td>{{i.brandname}}</td>
+                        <td><img src="/adminapp/media/{{i.brandimage}}" alt="image to be uploaded"></td>
                         <td>
                           <a class="btn  btn-sm edit"data-toggle="modal" 
                           data-target="#editbrand" style="cursor: pointer;background-color: rgb(226, 123, 140);" href="#editbrand">
@@ -115,28 +124,15 @@
                                 <i class="material-icons">delete</i>Delete
                                 </a> 
                         </td>
-                      </tr>
-                      <tr>
-                        
-                        <td>2</td>
-                        <td>Citrus</td>
-                        <td><img src="" alt="image to be uploaded"></td>
-                        <td>
-                          <a class="btn btn-primary btn-sm edit"data-toggle="modal" 
-                          data-target="#editbrand" style="cursor: pointer;" href="#editbrand">
-                            <i class="material-icons">edit</i>Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm delete" style="cursor: pointer;" >
-                                <i class="material-icons">delete</i>Delete
-                                </a> 
-                        </td>
-                      </tr>
+                      </tr> -->
+                      
                      
                     </tbody>
                   </table>
             </div>
             </div>
      </div>
+     {{msg}}
     </div>
 </div>
 
@@ -179,5 +175,34 @@
   </div>
 </div>
 </div>
-
+<script>
+    function loaddata(){
+        $.ajax({
+           url:'/adminapp/loadbrand/',
+           type:'GET',
+           success:function(response){
+               $('.tr').remove()
+               
+               for(i=0;i<response.brand.length;i++)
+               $('#table').append("<tr class='tr'><td>"+response.brand[i].id+"</td><td>"+response.brand[i].bname+"</td><td><img src='/adminapp/media/response.brand[i].bimage' alt='image to be uploaded'></td><td><button onclick='deldata("+response.brand[i].id+")'>Delete</button></td></tr>")
+           } 
+        })
+    }
+    function deldata(id){
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/adminapp/delbrand/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    loaddata()
+                }
+            })
+        }
+</script>
 {% endblock %}

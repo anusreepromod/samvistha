@@ -1,0 +1,189 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<div class="content" style="padding-top:40px; padding-left: 10px;">
+    <div class="page-title">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-start mb-3 mb-md-0">
+                <div class="d-inline-block">
+                    <h5 class="h4 d-inline-block font-weight-400 mb-0 ">Stocks
+                  </h5>
+                </div>
+            </div> 
+            <div class="col-xl-8 col-lg-8 col-md-8 d-flex align-items-center justify-content-between justify-content-md-end">
+                <div class="col-xl-4 col-lg-4 col-md-4 d-flex align-items-center justify-content-between justify-content-md-end">
+            
+                    <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                    <span class="input-group-append">
+                      <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                    </span>  
+        </div> 
+            </div>
+        </div>
+    </div>
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                       Stock Form
+                        </div>
+                        <div class="card-body">
+                          <form action="/adminapp/stock/" method="POST"> 
+                              {% csrf_token %}
+                           <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="input-label" for="">Brand
+                                        <span class="required-field"></label>
+                                        <select id="brand" name="brand" class="form-control" required >
+                                        <option value="">--select--</option>
+                                        {% for i in brand %}
+                                        <option value="{{i.id}}">{{i.brandname}}</option>
+                                        {% endfor %}
+                                        </select>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="input-label" for="">Category
+                                        <span class="required-field"></label>
+                                        <select id="category" name="category" class="form-control" required>
+                                        <option value="">--select--</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="input-label" for="">Sub Category
+                                            <span class="required-field"></label>
+                                            <select id="subcategory" name="subcategory" class="form-control" required>
+                                            <option value="">--select--</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                          </div>
+                              <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="input-label" for="">Product Id
+                                            <span class="required-field"></label>
+                                            <select id="pid" name="pid" class="form-control" required>
+                                            <option value="">--select--</option>
+                                            </select>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="name">Stocks</label>
+                                        <input type="text" class="form-control" name="stock" id="stock" placeholder="Stocks" required>
+                                        </div>
+                              </div>
+                            </div> 
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                     </div>
+                          </form>
+                          {{msg}}
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Stocks</h4>
+                    </div>
+                    
+                    <div class="table-responsive">
+                      <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
+                         <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="30%">Product Id</th>
+                                <th width="30%">Stocks</th>    
+                                <th width="30%">Action</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>1</td>    
+                                <td>10</td>
+                                <td>
+                                <a href="" class="btn btn-primary btn-sm">
+                                Update
+                                </a>
+                                </td>
+                                </tr>
+                         </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+      $('#brand').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/stockcategory/',
+            type:'POST',
+            data:{
+                brand:$('#brand').val()
+            },
+            success: function(response){
+                for(i=0;i<response.category.length;i++){
+                    $('#category').append('<option value='+response.category[i].id+'>'+response.category[i].category_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+    $('#category').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/stocksubcategory/',
+            type:'POST',
+            data:{
+                category:$('#category').val()
+            },
+            success: function(response){
+                
+                for(i=0;i<response.subcategory.length;i++){
+                    $('#subcategory').append('<option value='+response.subcategory[i].id+'>'+response.subcategory[i].subcategory_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+    $('#subcategory').change(function(){
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+  $.ajax({
+      url:'/adminapp/getproductid/',
+      type:'POST',
+      data:{
+          subcategory:$('#subcategory').val()
+      },
+      success: function(response){
+        for(i=0;i<response.product.length;i++){
+                    $('#pid').append('<option value='+response.product[i].id+'>'+response.product[i].id+'</option>')
+                }
+      }
+  }) 
+    })
+</script>
+{% endblock %}

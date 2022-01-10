@@ -1,0 +1,44 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       loaddata()
+   }   
+</script>
+<div style="padding-top:60px;padding-left: 10px;"> 
+  <div class="all-button-box row d-flex justify-content-end" style="padding-right:40px;padding-bottom: 10px;">
+    <div class="col-xl-1 col-lg-1 col-md-3 col-sm-8 col-8">
+        <div class="btn-group" >
+            <a href="/adminapp/addnotifications/" class="btn  btn-small active" role="button" style="background-color: rgb(226, 123, 140);" aria-pressed="true"><i class="fa fa-plus">Add</i></a>
+        </div>
+</div>
+</div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h3 class="card-title">Notifications</h3>  
+                  </div>
+                  {% for i in notify%}
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-lg-12">
+                            <div class="alert  " data-notify="container" style="background-color: rgb(226, 123, 140);">
+                                <i class="material-icons" data-notify="icon">add_alert</i>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <i class="material-icons">close</i>
+                                </button>
+                                <span data-notify="message">{{i.notify}}</span>
+                              </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                   {% endfor %}
+                </div>
+        </div>
+    </div>
+
+
+{% endblock %}

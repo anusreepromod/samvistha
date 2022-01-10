@@ -24,10 +24,10 @@
         
         </style>
   </head>
-  <body>
+  <body onload="update()">
     <div class="row">
         <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: rgb(236, 93, 117);">
+            <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: palevioletred;">
                 <a class="navbar-brand mr-0 px-3" href="#"><h3>Samvistha</h3></a>
                 <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse"
                     data-target="#sidebarmenu" aria-controls="sidebarmenu" aria-expanded="false"
@@ -37,42 +37,43 @@
                 
                     <div class="collapse navbar-collapse " id="sidebarmenu">
                     <ul class="navbar-nav  ml-auto ">
-                        <form class="navbar-form"> 
+                        <!-- <form class="navbar-form"> 
                             <div class="input-group no-border ml-auto">
                                     <input type="text" value="" class="form-control col-12 col-lg-9" placeholder="Search...">
                                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div> 
-                            </form>
+                            </form> -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            <a class="nav-link" href="/adminapp/notification/" id="navbarDropdownMenuLink" 
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">notifications</i>5
+                                <i class="material-icons">notifications</i>
                                 <!-- <span class="notification" style="font-size:20px;">5</span> -->
                                
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Anu responded to your email</a>
                                 <a class="dropdown-item" href="#">You have 5 new tasks</a>
                                 <a class="dropdown-item" href="#">You leave request has been approved</a>
                                 <a class="dropdown-item" href="#">Another Notification</a>
                                 <a class="dropdown-item" href="#">Another One</a>
-                            </div>
+                            </div> -->
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">person</i>
+                                <!-- <i class="material-icons">person</i>
                                 <p class="d-lg-none d-md-block">
                                     Account
-                                </p>
+                                </p> -->
+                                <i class='fas fa-user-cog' style='font-size:20px' id="p"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                <a class="dropdown-item" href="/user/userprofile/">Profile</a>
-                                <a class="dropdown-item" href="/user/settings/">Settings</a>
+                                
+                                <a class="dropdown-item" href="/adminapp/settings/">Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Log out</a>
+                                <a class="dropdown-item" href="/adminapp/logout/">Log out</a>
                             </div>
                         </li>
                     </ul>
@@ -103,6 +104,7 @@
                                         Brand
                                     </a>
                                 </li>
+    
                                 <li class="nav-item">
                                     <a class="nav-link collapsed"
                            href="#navbar-category" data-toggle="collapse" role="button"
@@ -120,9 +122,9 @@
                                     <li class="nav-item ">
                                         <a href="/adminapp/subcategory/" class="nav-link">Sub Category</a>
                                     </li>
-                                    <li class="nav-item ">
+                                    <!-- <li class="nav-item ">
                                         <a href="/adminapp/subsubcategory/" class="nav-link">Sub Sub Category</a>
-                                    </li>
+                                    </li> -->
                                  </ul>
                                  </div>
                                 </li>
@@ -149,9 +151,7 @@
                                     <li class="nav-item ">
                                         <a href="/adminapp/productpage/" class="nav-link">Products</a>
                                     </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Attributes</a>
-                                    </li>
+                                    
                                  </ul>
                                  </div>
                                 </li>
@@ -171,27 +171,6 @@
                                     <li class="nav-item ">
                                         <a href="/adminapp/allorders/" class="nav-link">All</a>
                                     </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Confirmed</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Pending</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Processing</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Delivered</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Returned</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Declined</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="" class="nav-link">Cancelled</a>
-                                    </li>
                                  </ul>
                                  </div>
                                 </li>
@@ -208,12 +187,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="">
+                                    <a class="nav-link" href="/adminapp/stock/">
                                         <i class="material-icons">inventory</i>
                                         Stocks
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link collapsed"
                            href="#navbar-shipping" data-toggle="collapse" role="button"
                            aria-expanded="false"
@@ -231,9 +210,9 @@
                                     
                                  </ul>
                                  </div>
-                                </li>
+                                </li> -->
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="">
+                                    <a class="nav-link" href="/adminapp/notification/">
                                         <i class="material-icons">notifications</i>Notification
                                         
                                     </a>
@@ -261,9 +240,38 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    
+    <script>
+        getdetails()
+        function getdetails(){
+            
+          $.ajax({
+              url:'/adminapp/master/',
+              type:'GET',
+              success:function(response){
+                  
+                  $('#p').html(response.user)
+              }
+          })
+        }
+//         update()
+//         function update(){
+//             alert("hi")
+//             $.ajaxSetup({
+//   headers: { "X-CSRFToken": '{{csrf_token}}' }
+// });
+//             $.ajax({
+//               url:'/adminapp/update/',
+//               type:'POST',
+//               success:function(response){
+                  
+                  
+//               }
+//           })
+//         }
+    </script>
   </body>
 </html>

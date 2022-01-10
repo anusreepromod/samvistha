@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <input type="file" id="image" >
+    <input type="file" id="file" >
+    <button onclick="fnimage()" >Submit</button>
+
+<script>
+        function fnimage(){
+            $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+     });
+    //  console.log($('#image').val())
+    // $(':file').on('change',function(){
+    //     file= this.files[0]
+    //     console.log(file.size)
+    // })
+    // file= $('#image').val()
+    // // var path = file;
+    // files=file.replace(/^.*[\\\/]/, '')
+    // var files= $('#image')[0].files[0]  
+    // file=files.name           
+    // console.log(file)
+    // var f_obj = $("#image").get(0).files[0]; 
+    //     console.log("File object:",f_obj.name);
+    var data= new FormData()
+   data.append("files",$("input[id^='image']")[0].files[0]);
+   data.append("file",$("input[id^='file']")[0].files[0]);
+     $.ajax({
+            url:'/adminapp/addfile/',
+            type:'POST',
+            processData:false,
+            contentType:false,
+            mimeType: 'multipart/form-data',
+            data:data,
+            success:function(response){
+                alert(response.msg)
+            }
+        })
+        }
+        // console.log($('#image').val)
+       
+</script>
+{% endblock %}

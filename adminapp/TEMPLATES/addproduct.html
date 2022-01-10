@@ -1,6 +1,7 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <div class="content" style="padding-top:40px; padding-left: 10px;">
     <div class="row">
         <div class="col-md-12">
@@ -9,14 +10,16 @@
                   <h5>Product Form</h5>
                 </div>
                 <div class="card-body">
-                   <form action="" method="POST" >
+                   <form action="/adminapp/addproduct/" method="POST" >
+                       {% csrf_token %}
                    <div class="row">
                        <div class="col-12">
                            <div class="form-group" >
                            <label class="input-label" for="">Name
                             <span class="required-field">
                            </label>
-                           <input type="text"  class="form-control" placeholder="New Product Name" required>
+                           <input type="text"  class="form-control" placeholder="New Product Name" required name="name" id="pname" >
+                           
                            </div>
                            </div>
                        <div class="col-12">
@@ -24,7 +27,7 @@
                            <label for="">Description</label>
                            <span class="required-field">
                            <br>
-                           <textarea name="" class= "editor" id="" cols="100" rows="10"></textarea>
+                           <textarea name="desc" class= "editor" id="desc" cols="100" rows="10" name="desc"></textarea>
                            </div>
                            </div>
                    </div>
@@ -44,54 +47,35 @@
                    <div class="row">
                        <div class="col-md-4">
                         <div class="form-group">
-                            <label class="input-label" for="">Category
+                            <label class="input-label" for="">Brand
                             <span class="required-field"></label>
-                            <select id="" name="" class="form-control" required>
+                            <select id="brand" name="brand" class="form-control" required >
                             <option value="">--select--</option>
-                            <option value="">Women's Fashion</option>
+                            {% for i in brand %}
+                            <option value="{{i.id}}">{{i.brandname}}</option>
+                            {% endfor %}
                             </select>
                             </div>
                            </div>
                        <div class="col-md-4">
                         <div class="form-group">
-                            <label class="input-label" for="">Sub Category
+                            <label class="input-label" for="">Category
                             <span class="required-field"></label>
-                            <select id="" name="" class="form-control" required>
+                            <select id="category" name="category" class="form-control" required>
                             <option value="">--select--</option>
-                            <option value="">Indian Wear</option>
                             </select>
                             </div>
                            </div>
-                           <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="input-label" for="">Sub Sub Category
-                                <span class="required-field"></label>
-                                <select id="" name="" class="form-control" required>
-                                <option value="">--select--</option>
-                                <option value="">Kurta</option>
-                                </select>
-                                </div>
-                               </div>
-                               <div class="col-md-6">
+                               <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="input-label" for="">Brand
+                                    <label class="input-label" for="">Sub Category
                                     <span class="required-field"></label>
-                                    <select id="" name="" class="form-control" required>
+                                    <select id="subcategory" name="subcategory" class="form-control" required>
                                     <option value="">--select--</option>
-                                    <option value="">Sams</option>
                                     </select>
                                     </div>
                                    </div>
-                                   <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="input-label" for="">Units
-                                        <span class="required-field"></label>
-                                        <select id="" name="" class="form-control" required>
-                                        <option value="">--select--</option>
-                                        <option value="">Pcs</option>
-                                        </select>
-                                        </div>
-                                       </div>
+                                   
                    </div>
                 </form>
                    </div>
@@ -108,43 +92,12 @@
                 <div class="card-body">
                    <div class="form-group">
                    <div class="row">
-                       <div class="col-md-6">
+                       <div class="col-md-6" style="padding-top: 25px;padding-left:40px;">
                         <label for="colors">
                             Colors :
                             </label> 
-                            <label class="switch">
-                            <input type="checkbox" class="status" value="" id="check1"  onchange="change()">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="required-field">
-                        <br>
-                            <select class="form-control" id="select1" disabled>
-                                <option value="#FF0000">
-                                Red
-                                </option> 
-                                 <option value="#4169E1">
-                                RoyalBlue
-                                </option>
-                                <option value="#C0C0C0">
-                                Silver
-                                </option>
-                                <option value="#87CEEB">
-                                SkyBlue
-                                </option>    
-                                <option value="#EE82EE">
-                                Violet
-                                </option>
-                                <option value="#F5DEB3">
-                                Wheat
-                                </option>
-                                <option value="#FFFFFF">
-                                White
-                                </option>
-                                <option value="#FFFF00">
-                                Yellow
-                                </option>
-                                </select>
-                           
+                            <input type="text" id="color" name="color">
+                            
                            </div>
                            <script>
                                function change(){
@@ -157,17 +110,21 @@
                                }
                                
                            </script>
-                       <div class="col-md-6">
+                       <div class="col-md-6"style="padding-left:90px;" >
                            <div class="form-group">
                             <label for="" >
-                                Attributes :
-                                </label>
+                                Size :
+                                </label><br>
                                 <span class="required-field">
-                                <select class=" form-control">
-                                <option value=" ">--Select--</option>
-                                <option value=" ">size</option>
+                                    <input type="checkbox" id="small" name="small" value="Small" >
+                                    <label for="s" > S</label >
+                                    <input type="checkbox" id="medium" name="medium" value="Medium">
+                                    <label for="m" > M</label>
+                                    <input type="checkbox" id="large" name="large" value="Large">
+                                    <label for="l" > L</label>
+                                    <input type="checkbox" id="xlarge" name="xlarge" value="Xlarge">
+                                    <label for="xl" > XL</label>
                                 
-                                </select>
                            </div>
                            </div>
                    </div>
@@ -178,19 +135,93 @@
     </div>
     <div class="row" style="padding-top: 30px;">
         <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Product Images</h5>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                        
+                       
+                      <div class="form-group col-4" >
+                        <label class="input-label" for="">Image1
+                        </label>
+                        <span class="required-field">
+                            <input class="form-control border-0" name="pimage1" id="pimage1" type="file" >
+                        </div>
+                      <div class="form-group col-4" >
+                        <label class="input-label" for="">Image2
+                        </label>
+                        <span class="required-field">
+                            <input class="form-control border-0" name="pimage2" id="pimage2" type="file" >
+                        </div>
+                      <div class="form-group col-4" >
+                        <label class="input-label" for="">Image3
+                        </label>
+                        <span class="required-field">
+                            <input class="form-control border-0" name="pimage3" id="pimage3" type="file" >
+                        </div>
+                      
+                      </div>
+                  </div>
+            </div>
+        </div>
+        </div>
+        <div class="row" style="padding-top: 30px;">
+            <div class="col-md-12">
+                   <div class="card">   
+                    <div class="card-header">
+                      <h5>Product Details</h5>
+                    </div>
+                    <div class="card-body">
+                       
+                       <div class="row">
+                           <div class="col-4">
+                               <div class="form-group" >
+                               <label class="input-label" for="">Fit
+                               </label>
+                               <span class="required-field">
+                               <input type="text"  class="form-control" placeholder="Fit" id="fit" required>
+                               </div>
+                               </div>
+                               <div class="col-4">
+                                <div class="form-group" >
+                                <label class="input-label" for="">Fabric
+                                </label>
+                                <span class="required-field">
+                                <input type="text"  class="form-control" placeholder="Fabric" id="fabric" required>
+                                </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" >
+                                    <label class="input-label" for="">Sleeve
+                                    </label>
+                                    <span class="required-field">
+                                    <input type="text"  class="form-control" placeholder="Sleeve" id="sleeve" required>
+                                    </div>
+                                    </div>
+                                
+                       </div>
+                       </div>
+                   </div>
+               
+            </div>
+        </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-md-12">
                <div class="card">
                 <div class="card-header">
-                  <h5>Product Price & Stock</h5>
+                  <h5>Product Price</h5>
                 </div>
                 <div class="card-body">
-                   <form action="" method="POST" >
+                   
                    <div class="row">
                        <div class="col-6">
                            <div class="form-group" >
                            <label class="input-label" for="">Unit Price
                            </label>
                            <span class="required-field">
-                           <input type="text"  class="form-control" placeholder="Unit Price" required>
+                           <input type="text"  class="form-control" placeholder="Unit Price" id="unitprice" required>
                            </div>
                            </div>
                            <div class="col-6">
@@ -198,41 +229,173 @@
                             <label class="input-label" for="">Purchase Price
                             </label>
                             <span class="required-field">
-                            <input type="text"  class="form-control" placeholder="Purchase Price" required>
+                            <input type="text"  class="form-control" placeholder="Purchase Price" id="purchaseprice" required>
                             </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Tax</label>
                                 <label class="badge badge-info">Percent ( % )</label>
                                 <span class="required-field">
-                                <input type="number" min="0" value="0" step="1.00" placeholder="Tax}" name="tax" value="" class="form-control">
+                                <input type="number" min="0" value="0" step="1.00" placeholder="Tax}" name="tax" value="" class="form-control" id='tax'>
                                 <input name="tax_type" value="percent" style="display: none">
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="control-label">Discount</label>
-                                    <span class="required-field">
-                                    <input type="number" placeholder="Discount"  class="form-control">
-                                    </div>
-                                    <div class="col-md-2" style="padding-top: 30px;">
-                                    <select class="form-control" >
-                                    <option value="flat">Flat</option>
-                                    <option value="percent">Percent</option>
-                                    </select>
+                                <div class="col-md-6">
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">Discount
+                                        <span class="required-field"></label>
+                                        <select id="discount" name="" class="form-control" required>
+                                        <option value="">--select--</option>
+                                        {% for i in discount %}
+                                        <option value="{{i.id}}">{{i.discount}}</option>
+                                        {% endfor %}
+                                        </select>
+                                        </div>
                                     </div>
                    </div>
                    </div>
                </div>
-           </form>
+           
         </div>
     </div><br>
     <div class="card card-footer">
         <div class="row">
         <div class="col-md-12" style="padding-top: 10px">
-        <button type="button"  class="btn" style="background-color: rgb(226, 123, 140);">Submit</button>
+        <button type="button"  class="btn" style="background-color: rgb(226, 123, 140);" onclick="addproduct()">Submit</button>
         <button type="button"  class="btn btn-danger">Cancel</button>
         </div>
         </div>
         </div>
 </div>
+<script>
+  
 
+    $('#brand').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/getcategory/',
+            type:'POST',
+            data:{
+                brand:$('#brand').val()
+            },
+            success: function(response){
+                for(i=0;i<response.category.length;i++){
+                    $('#category').append('<option value='+response.category[i].id+'>'+response.category[i].category_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+    $('#category').change(function(){
+        
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/adminapp/getsubcategory/',
+            type:'POST',
+            data:{
+                category:$('#category').val()
+            },
+            success: function(response){
+                console.log(response.subcategory)
+                for(i=0;i<response.subcategory.length;i++){
+                    $('#subcategory').append('<option value='+response.subcategory[i].id+'>'+response.subcategory[i].subcategory_name+'</option>')
+                }
+               
+            }
+        })
+    }
+    )
+  function checkproduct(){   
+      alert($('#pname').val()) 
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+$.ajax({
+    url:'/adminapp/checkproduct/',
+    type:'POST',
+    data:{
+       name:$('#pname').val()
+    },
+    success:function(response){
+        alert(response.msg)
+    }
+})
+  }
+
+  function addproduct(){
+    if ($('#small').is(':checked')){
+      small='True'
+      
+     }
+     else{
+         small='False'
+     }
+     if ($('#medium').is(':checked')){
+      medium='True'
+      
+     }
+     else{
+         medium='False'
+     }
+     if ($('#large').is(':checked')){
+      large='True'
+      
+     }
+     else{
+         large='False'
+     }
+     if ($('#xlarge').is(':checked')){
+      xlarge='True'
+      
+     }
+     else{
+         xlarge='False'
+     }
+     
+     
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+var data= new FormData()
+   data.append("pimage1",$("input[id^='pimage1']")[0].files[0]);
+   data.append("pimage2",$("input[id^='pimage2']")[0].files[0]);
+   data.append("pimage3",$("input[id^='pimage3']")[0].files[0]);
+   data.append("pname",$('#pname').val());
+   data.append("desc",$('#desc').val());
+   data.append("brand",$('#brand').val());
+   data.append("category",$('#category').val());
+   data.append("subcategory",$('#subcategory').val());
+   data.append("color",$('#color').val());
+   data.append("small",small);
+   data.append("large",large);
+   data.append("medium",medium);
+   data.append("xlarge",xlarge);
+   data.append("unitprice",$('#unitprice').val());
+   data.append("purchaseprice",$('#purchaseprice').val());
+   data.append("tax",$('#tax').val());
+   data.append("discount",$('#discount').val());
+   data.append("fit",$('#fit').val());
+   data.append("fabric",$('#fabric').val());
+   data.append("sleeve",$('#sleeve').val());
+   $.ajax({
+    url:'/adminapp/addproducts/',
+    type:'POST',
+    enctype: 'multipart/form-data',
+    contentType: false,
+    processData: false,
+    data:data,
+    
+    success: function(response){
+        alert(response.msg)
+        location.reload(true)
+    }
+})  
+  }
+</script>
 {% endblock %}

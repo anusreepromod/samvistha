@@ -1,6 +1,12 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+   window.onload=function(){
+       getdata()
+   }
+</script>
 <div class="content" style="padding-top:40px; padding-left: 10px;">
   <h4>Dashboard</h4>
     <div class="row" style="padding-top: 40px;">
@@ -8,11 +14,11 @@
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <p class="card-category">Total Categories</p>
-                    <h3 class="card-title">4500
+                    <h3 class="card-title" id="tc">
                     </h3>
                 </div>
                 <div class="item-footer">
-                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                    <a href="/adminapp/category/" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
                 </div>
             </div>
         </div>
@@ -20,11 +26,11 @@
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <p class="card-category">Total Products</p>
-                    <h3 class="card-title">55000
+                    <h3 class="card-title" id="tp">
                     </h3>
                 </div>
                 <div class="item-footer">
-                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                    <a href="/adminapp/productpage/" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
                 </div>
             </div>
             
@@ -33,11 +39,11 @@
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <p class="card-category">Total Orders</p>
-                    <h3 class="card-title">4500
+                    <h3 class="card-title" id="to">
                     </h3>
                 </div>
                 <div class="item-footer">
-                    <a href="" style="color: black;padding-left: 30px; display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                    <a href="/adminapp/allorders/" style="color: black;padding-left: 30px; display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
                 </div>
             </div>
            
@@ -46,11 +52,11 @@
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <p class="card-category">Total Customers</p>
-                    <h3 class="card-title">45000
+                    <h3 class="card-title" id="tcs">
                     </h3>
                 </div>
                 <div class="item-footer">
-                    <a href="" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
+                    <a href="/adminapp/customer/" style="color: black;padding-left: 30px;display:flex; align-items: center; flex-wrap: wrap;">More info <i class="material-icons">navigate_next</i></a>
                 </div>
             </div>
         </div>
@@ -131,7 +137,7 @@
             </div>
         </div>
     </div>
-    <div class="row" style="padding-top: 50px;">
+    <!-- <div class="row" style="padding-top: 50px;">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <h5 class="card-header">Popular Products</h5>
@@ -183,7 +189,7 @@
                   </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row" style="padding-top: 50px;">
         <div class="col-lg-6" >
             <div class="card" >
@@ -221,4 +227,19 @@
         </div>
     </div>
 </div>
+<script>
+  function getdata(){
+    $.ajax({
+        url:'/adminapp/getdata/',
+        type:'GET',
+        success:function(response){
+            $('#tc').text(response.tc.length)
+            $('#tp').text(response.tp.length)
+            $('#tcs').text(response.user.length)
+            $('#to').text(response.order.length)
+            
+        }
+    })
+  }
+</script>
 {% endblock %}

@@ -31,13 +31,18 @@
         Category Form
         </div>
         <div class="card-body">
-        <form action="" method="POST" >
+        <form action="/adminapp/category/" method="POST" >
+          {% csrf_token %}
         <div class="row">
           <div class="col-6" style="padding-top: 10px;"> 
             <div class="form-group">
               <label class="input-label" for="">Brand
-              <select name="" class="form-control" id="" style="width:400px;height:35px;">
+              <select name="brandname" class="form-control" id="" style="width:400px;height:35px;" multiple>
                 <option value="">Select</option>
+                {% for i in brand %}
+                <option value="{{ i.id }}">{{ i.brandname }}</option>
+                 
+                {% endfor %}
               </select>
             </div>
             
@@ -46,20 +51,7 @@
         <div class="form-group" >
         <label class="input-label" for="">Name
         </label>
-        <input type="text"  class="form-control" placeholder="New Category" required>
-        </div>
-        </div>
-        <div class="col-6 ">
-        <label>Image</label><small style="color: red">*
-        </small>
-        <div class="custom-file">
-        <input type="file" name="image" id="" class="custom-file-input" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
-        <label class="custom-file-label" for="">Choose File</label>
-        </div>
-        </div>
-        <div class="col-12">
-        <div class="form-group">
-        <hr>
+        <input type="text"  class="form-control" name="categoryname" placeholder="New Category" required>
         </div>
         </div>
         </div>
@@ -83,16 +75,17 @@
                             
                             <th scope="col" style="width: 15%;">Category ID</th>
                             <th scope="col" style="width: 15%;">Category</th>
-                            <th scope="col" style="width: 15%;">Category Logo</th>
+                            
                             <th scope="col" style="width: 15%;">Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          {% for i in category %}
                           <tr>
                             
-                            <td>1</td>
-                            <td>Women Fashion</td>
-                            <td><img src="" alt="image to be uploaded"></td>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.category_name }}</td>
+                            
                             <td>
                                 <a class="btn btn-primary btn-sm edit"data-toggle="modal" data-target="#editcategory" style="cursor: pointer;background-color:rgb(226, 123, 140);" href="#editcategory">
                                     <i class="material-icons">edit</i>Edit
@@ -102,7 +95,7 @@
                                         </a> 
                             </td>
                           </tr>
-                         
+                         {% endfor %}
                         </tbody>
                       </table>
                 </div>

@@ -1,45 +1,70 @@
 {% extends "masters.html" %}
 {% load static %}
 {% block content %}
-<div style="padding-top: 50px; padding-left: 20px; padding-right: 20px;"> 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<div style="padding-top: 50px; padding-left:100px; padding-right: 100px;"> 
     <div class="card">
+        
+        <div class="card-body">
+            
+            <h6>Deliver to: </h6>
+            <h6 id="address">{{address.address}},{{address.city}},{{address.state}},{{address.country}},{{address.pincode}},
+              
+            </h6>
+            <h6>Phone no: {{address.mobile}}</h6>
+        </div>
+    </div><br><br>
+    <div class="card" >
         <div class="card-header">
             <div class="row">
-                <div class="col-lg-10">
-                    <h3>Shopping Cart</h3>
+                <div class="col-lg-9">
+                    <h5>Shopping Cart</h5>
                 </div>
-                <div class="col-lg-2">
-                    <h5>Price</h5>
+                <div class="col-lg-2" style="padding-left:78px;">
+                    <h5 >Total Price:&#8377</h5>
+                </div>
+                <div class="col-lg-0" >
+                    <h5 id="tp">{{sum}}</h5>
                 </div>
             </div>
         </div>
+        {% for i in bag %}
         <div class="card-body">
             <div class="row">
-            <div class="col-lg-3">
-                <img src="{% static 'images/churi.jpg' %}" alt="" style="height:300px;">
+            <div class="col-lg-4">
+                <img src="{{ i.image }}" alt="" style="height:100px;">
                 
             </div>
-            <div class="col-lg-7">
-                <h5>Citrus Womens Pink Cotton A Line Suit Set</h5>
-                <h6>Size: S</h6>
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Quantity
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       
-                        <a class="dropdown-item" href="#">i</a>
-                       
-                      
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-7">
+                        
+                        <h5>{{ i.name }}</h5>
+                        <h6>Size:{{i.size}}</h6>
+                        <h6>&#8377;{{i.price}}</h6>
                     </div>
+                    <div class="col-lg-3">
+                        <div>
+                            <!-- <a href="" style="text-decoration: none;"> 
+                  <div class="card">
+                      <div class="Card-header"> 
+                         <h6 style="text-align: center;color: black;">Delete</h6>
+                        </div>
                   </div>
+                </a>  -->
+                <button  onclick='deldata("{{i.id}}")'>Remove</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
-            <div class="col-lg-2">
-                <h6>&#8377; 2000</h6>
-            </div>
+           
         </div>
     </div>
-    <div class="card-footer">
+    <hr>
+    {% endfor %}
+    <!-- <div class="card-footer">
         <div class="row">
         <div class="col-lg-10">
             <h5>Total Price</h5>
@@ -48,12 +73,13 @@
         <h6>&#8377; 2000</h6>
        </div>
     </div>
-</div>
+</div> -->
 <div class="card-footer">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-3" >
             <center>
-                <button type="submit" class="btn btn-primary">Proceed to Buy</button> 
+                <button type="submit" class="btn btn-primary" onclick="pay()">Proceed to Buy</button> 
             </center>
             
         </div>
@@ -62,5 +88,74 @@
 </div>
     </div>
 </div>
+<script>
+    function pay(){
+        amount=$('#tp').text()
+        
+        address=$('#address').text()
+        $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+        $.ajax({
+            url:'/user/orderproduct/',
+            type:'POST',
+            data:{
+                totalprice: amount,
+                address:address,
+            },
+            success: function(response){
+                console.log("payment_id= " +response.id)
+                $('#orderid').val(response.id)
+                var options= {
+                    "key": "rzp_test_Wr1xwjcVt38vN4",
+                    "amount":response.amount,
+                    "currency":"INR",
+                    "name":"Anusree",
+                    "description":"Place Order",
+                    "id":"1234",
+                    "order_id": response.id,
+                    "handler": function(response) {
+                        console.log(response.razorpay_payment_id);
+                        console.log(response.razorpay_order_id);
+                        console.log(response.razorpay_signature);
+                        
+                        updatepayment()
+                        // updateorderid()
+                    }
+                };
+                var rzpl = new Razorpay(options);
+                rzpl.open();
+            }
+        })
+    }
+    function updatepayment(){
+        $.ajax({
+            url:'/user/updatepayment/',
+            type:'GET',
+            success: function(response) {
+                alert("Your Order Placed Successfully")
+                // window.location.reload()
+                location.href = "/user/summary/"
 
+            }
+        })
+    }
+    function deldata(id){
+        alert(id)
+    $.ajaxSetup({
+  headers: { "X-CSRFToken": '{{csrf_token}}' }
+});
+            $.ajax({
+                url:'/user/delete/',
+                type: 'POST',
+                data:{
+                    id:id
+                },
+                success: function(response){
+                    alert(response.msg)
+                    window.location.reload()
+                }
+            })
+        }
+</script>
 {% endblock %}
